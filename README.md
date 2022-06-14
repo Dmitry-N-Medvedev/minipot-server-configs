@@ -1,0 +1,1 @@
+# minipot-server-configs
