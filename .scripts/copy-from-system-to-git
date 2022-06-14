@@ -1,13 +1,11 @@
 #!/bin/sh
 
-# referece: https://tldp.org/LDP/abs/html/string-manipulation.html
-
-# git fetch --progress --prune --recurse-submodules=no origin
-# git pull
-
 SOURCES="/usr/local/etc/pot/"
+DEST="./system"
 
 for SOURCE in $SOURCES
 do
-  echo "$SOURCE"
+  DERIVED_FILE_NAME="${SOURCE#$DEST}"
+
+  cp -fR "$SOURCE" "$DEST"
 done
