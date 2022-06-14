@@ -1,0 +1,13 @@
+#!/bin/sh
+
+SYSTEM_PREFIX="./system"
+
+
+copy_file_to_system () {
+  ORIGINAL_FILE_NAME=$1
+  DERIVED_FILE_NAME="${ORIGINAL_FILE_NAME/$SYSTEM_PREFIX/}"
+
+  echo "copy $ORIGINAL_FILE_NAME to $DERIVED_FILE_NAME"
+}
+
+find ./system -type f | while read file_name; do copy_file_to_system "$file_name"; done
