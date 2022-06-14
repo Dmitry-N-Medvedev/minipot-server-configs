@@ -5,9 +5,9 @@
 # git fetch --progress --prune --recurse-submodules=no origin
 # git pull
 
-SOURCES=[ "/usr/local/etc/pot/" ]
+SOURCES="/usr/local/etc/pot/"
 
-for source in $SOURCES
+for SOURCE in $SOURCES
 do
-  echo "$source"
+  echo "$SOURCE"
 done
