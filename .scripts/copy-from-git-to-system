@@ -2,6 +2,9 @@
 
 # referece: https://tldp.org/LDP/abs/html/string-manipulation.html
 
+git fetch --progress --prune --recurse-submodules=no origin
+git pull
+
 SYSTEM_PREFIX="./system"
 
 copy_file_to_system () {
