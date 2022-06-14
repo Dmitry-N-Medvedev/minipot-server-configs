@@ -1,11 +1,12 @@
 #!/bin/sh
 
+# referece: https://tldp.org/LDP/abs/html/string-manipulation.html
+
 SYSTEM_PREFIX="./system"
-SYSTEM_LENGTH="${#SYSTEM_PREFIX}"
 
 copy_file_to_system () {
   ORIGINAL_FILE_NAME=$1
-  DERIVED_FILE_NAME="${ORIGINAL_FILE_NAME:$SYSTEM_LENGTH}"
+  DERIVED_FILE_NAME="${ORIGINAL_FILE_NAME#$SYSTEM_PREFIX}"
 
   echo "copy $ORIGINAL_FILE_NAME to $DERIVED_FILE_NAME"
 }
