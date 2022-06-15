@@ -1,11 +1,23 @@
 #!/bin/sh
 
-SOURCES="/usr/local/etc/pot/"
+SOURCES="/usr/local/etc/pot"
 DEST="./system"
 
 for SOURCE in $SOURCES
 do
-  DERIVED_FILE_NAME="${SOURCE#$DEST}"
+  DERIVED_FILE_NAME="$(dirname $DEST$SOURCE)"
+  echo "DERIVED: $DERIVED_FILE_NAME"
 
-  cp -fR "$SOURCE" "$DEST"
+
+  if [ -d $SOURCE ]
+  then
+    mkdir -p "$DERIVED_FILE_NAME"
+    cp -R $SOURCE $DERIVED_FILE_NAME
+  elif [ -f $SOURCE ]
+  then
+    echo "[F] $SOURCE"
+  else
+    echo "$SOURCE is not valid"
+    exit 1
+  fi
 done
