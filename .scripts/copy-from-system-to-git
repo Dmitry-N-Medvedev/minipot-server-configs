@@ -16,7 +16,7 @@ git checkout main
 git pull
 
 # 3. create new branch "system-copy-<RANDOM_ID>"
-git branch --no-track docs refs/heads/main
+git branch --no-track $BRANCH_NAME refs/heads/main
 git checkout $BRANCH_NAME
 
 for SOURCE in $SOURCES
