@@ -3,6 +3,12 @@
 SOURCES="/usr/local/etc/pot"
 DEST="./system"
 
+# 1. fetch the lastest from main
+# 2. if the main is newer -- abort
+# 3. create new branch "system-copy-<RANDOM_ID>"
+# 4. add all files to the newly created branch && commit
+# 5. push to git && create a merge request
+
 for SOURCE in $SOURCES
 do
   DERIVED_FILE_NAME="$(dirname $DEST$SOURCE)"
