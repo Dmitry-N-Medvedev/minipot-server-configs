@@ -2,6 +2,7 @@
 
 SOURCES="/usr/local/etc/pot"
 DEST="./system"
+RID=$(head -c100 /dev/urandom | strings -n1 | tr -d '[:space:]' | head -c15)
 
 # 0. reset hard
 git reset --hard
@@ -13,10 +14,13 @@ git merge --ff --ff-only refs/remotes/origin/main
 git checkout main
 
 # 3. create new branch "system-copy-<RANDOM_ID>"
-~/Downloads/projects/deneb-kaitos/minipot-server-configs> git branch --no-track docs refs/heads/main
-~/Downloads/projects/deneb-kaitos/minipot-server-configs> git checkout docs
+git branch --no-track docs refs/heads/main
+git checkout system-copy-$RID
 
 # 4. add all files to the newly created branch && commit
+git add --force -- .
+git commit -m "system-copy-$RID: $(date -u)"
+
 # 5. push to git && create a merge request
 
 for SOURCE in $SOURCES
