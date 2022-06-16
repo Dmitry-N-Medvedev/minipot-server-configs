@@ -2,7 +2,7 @@
 
 SOURCES="/usr/local/etc/pot"
 DEST="./system"
-RID=$(head -c100 /dev/urandom | strings -n1 | tr -d '[:space:]' | head -c15)
+RID=$(date -j -f "%a %b %d %T %Z %Y" "`date`" "+%s")
 BRANCH_NAME="system-copy-$RID"
 
 # 1. fetch the lastest from main
