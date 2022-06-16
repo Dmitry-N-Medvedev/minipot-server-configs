@@ -3,6 +3,7 @@
 SOURCES="/usr/local/etc/pot"
 DEST="./system"
 RID=$(head -c100 /dev/urandom | strings -n1 | tr -d '[:space:]' | head -c15)
+BRANCH_NAME="system-copy-$RID"
 
 # 0. reset hard
 git reset --hard
@@ -15,13 +16,16 @@ git checkout main
 
 # 3. create new branch "system-copy-<RANDOM_ID>"
 git branch --no-track docs refs/heads/main
-git checkout system-copy-$RID
+git checkout $BRANCH_NAME
 
 # 4. add all files to the newly created branch && commit
 git add --force -- .
-git commit -m "system-copy-$RID: $(date -u)"
+git commit -m "system copy on $(date -u)"
 
 # 5. push to git && create a merge request
+git push --porcelain --progress origin refs/heads/$BRANCH_NAME:refs/heads/$BRANCH_NAME
+git branch --set-upstream-to=refs/remotes/origin/$BRANCH_NAME $BRANCH_NAME
+
 
 for SOURCE in $SOURCES
 do
